@@ -18,8 +18,10 @@ struct ContentView: View {
                 VStack {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
-                            Text(dynamicText)
-                                .id("combinedText")
+                            LazyVStack(spacing: 0) {
+                                Text(dynamicText)
+                                    .id("combinedText")
+                            }
                         }
                         .onChange(of: dynamicText, perform: { _ in
                             withAnimation {
@@ -36,7 +38,7 @@ struct ContentView: View {
                     }
                 }
             }
-        }.frame(height: 700)
+        }.frame(height: UIScreen.main.bounds.height).background(.red)
     }
     
     private func scrollToBottom(_ scrollViewProxy: ScrollViewProxy) {
